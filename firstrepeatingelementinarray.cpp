@@ -4,23 +4,40 @@ using namespace std;
 int main()
 {
     int n;
+    cout<<"Enter the number elements in the array: ";
     cin>>n;
     int arr[n];
+    cout<<"Type these elements: ";
     for(int i=0; i<n; i++)
     {
         cin>>arr[i];
     }
-    int minin=INT_MAX;
-    int a[n]={-1*n};
+    const int N=1e6+2;
+    int idx[N];
+    for(int i=0; i<N; i++)
+    {
+        idx[i]=-1;
+    }
+    int minidx=INT_MAX;
     for(int i=0; i<n; i++)
     {
-        a[arr[i]]=i+1;
-        if(a[arr[i]!=-1] && i+1<minin)
+        if(idx[arr[i]]!=-1)
         {
-            minin=i+1;
-
+            minidx=min(minidx, idx[arr[i]]);
+        }
+        else
+        {
+            idx[arr[i]]=i;
         }
     }
-    cout<<minin<<endl;
+    cout<<"The value of minimum index is ";
+    if(minidx == INT_MAX)
+    {
+        cout<<-1<<endl;
+    }
+    else
+    {
+        cout<<minidx<<endl;
+    }
     return 0;
 }
